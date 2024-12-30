@@ -1,4 +1,4 @@
-package com.dytak.crudapiserver.entity;
+package com.dytak.crudapiserver.board;
 
 
 import jakarta.persistence.Entity;
