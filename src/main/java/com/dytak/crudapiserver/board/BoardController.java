@@ -1,14 +1,10 @@
 package com.dytak.crudapiserver.board;
 
-import com.dytak.crudapiserver.common.DTO;
-import com.dytak.crudapiserver.common.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class BoardController {
@@ -18,6 +14,21 @@ public class BoardController {
     @Autowired
     BoardController(BoardService boardService){
         this.boardService=boardService;
+    }
+
+    @PostMapping("/board")
+    public ResponseEntity<?> saveBoard(@RequestBody BoardDTO boardDTO){
+        return ResponseEntity.ok().body(boardService.saveBoard(boardDTO));
+    }
+
+    @PutMapping("/board")
+    public ResponseEntity<?> modifyBoard(@RequestBody BoardDTO boardDTO){
+        return ResponseEntity.ok().body(boardService.modifyBoard(boardDTO));
+    }
+
+    @DeleteMapping("/board/{id}")
+    public ResponseEntity<?> deleteBoard(@PathVariable Long id){
+        return ResponseEntity.ok().body(boardService.deleteBoard(id));
     }
 
     @RequestMapping("/board")
