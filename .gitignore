@@ -34,4 +34,4 @@ build/
 
 
 ### DOCKER ###
-./docker/data/**
+docker/data

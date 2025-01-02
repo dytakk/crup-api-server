@@ -2,7 +2,8 @@ package com.dytak.crudapiserver.member;
 
 
 import com.dytak.crudapiserver.util.PasswordEncrypt;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,6 +13,7 @@ import java.security.NoSuchAlgorithmException;
 @Getter
 @Builder
 @AllArgsConstructor
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class MemberSaveDTO {
 
 
@@ -19,7 +21,6 @@ public class MemberSaveDTO {
     private String password;
     private String name;
     private String grade;
-    @JsonValue(value = true)
     private String mailAddress;
 
     public Member toEntity() throws NoSuchAlgorithmException {
