@@ -1,7 +1,5 @@
 package com.dytak.crudapiserver.board;
 
-import com.dytak.crudapiserver.entity.Board;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
