@@ -1,8 +1,5 @@
-package com.dytak.crudapiserver;
+package com.dytak.crudapiserver.board;
 
-import com.dytak.crudapiserver.board.BoardRepository;
-import com.dytak.crudapiserver.board.BoardService;
-import com.dytak.crudapiserver.entity.Board;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
