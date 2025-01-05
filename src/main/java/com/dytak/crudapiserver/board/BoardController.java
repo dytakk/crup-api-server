@@ -32,7 +32,7 @@ public class BoardController {
     }
 
     @RequestMapping("/board")
-    public ResponseEntity<?> getBoardList(Pageable pageable){
+    public ResponseEntity<?> findBoard(Pageable pageable){
         return ResponseEntity.ok().body(boardService.findBoardList(pageable));
     }
     @RequestMapping("/board/{id}")
