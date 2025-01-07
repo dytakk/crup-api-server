@@ -1,13 +1,15 @@
 package com.dytak.crudapiserver.board;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.dytak.crudapiserver.comment.Comment;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -20,10 +22,9 @@ public class Board {
     private Long id;
     private String title;
     private String content;
-    private Long writer_id;
-
-    private Date crt_date;
-
-    private Date mod_date;
-
+    private Long writerId;
+    private Date crtDate;
+    private Date modDate;
+    @OneToMany(mappedBy = "board")
+    List<Comment> comment = new ArrayList<>();
 }

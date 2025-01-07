@@ -17,13 +17,13 @@ public class BoardController {
     }
 
     @PostMapping("/board")
-    public ResponseEntity<?> saveBoard(@RequestBody BoardDTO boardDTO){
-        return ResponseEntity.ok().body(boardService.saveBoard(boardDTO));
+    public ResponseEntity<?> saveBoard(@RequestBody BoardSaveDTO boardSaveDTO){
+        return ResponseEntity.ok().body(boardService.saveBoard(boardSaveDTO));
     }
 
     @PutMapping("/board")
-    public ResponseEntity<?> modifyBoard(@RequestBody BoardDTO boardDTO){
-        return ResponseEntity.ok().body(boardService.modifyBoard(boardDTO));
+    public ResponseEntity<?> modifyBoard(@RequestBody BoardSaveDTO boardSaveDTO){
+        return ResponseEntity.ok().body(boardService.modifyBoard(boardSaveDTO));
     }
 
     @DeleteMapping("/board/{id}")
