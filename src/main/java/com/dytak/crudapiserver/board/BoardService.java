@@ -1,10 +1,9 @@
 package com.dytak.crudapiserver.board;
 
 import com.dytak.crudapiserver.comment.Comment;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-
+import org.springframework.data.domain.*;
 
 
 import java.util.*;
@@ -20,9 +19,8 @@ public class BoardService {
         this.boardRepository=boardRepository;
     }
 
-    //TODO: Sorting, 검색기능, content는 Response항목에 불필요
-    public Page<Board> findBoardList(Pageable pageable){
-        return boardRepository.findAll(pageable);
+    public Page<BoardListDTO> getBoardList(Pageable pageable){
+        return BoardListDTO.of(boardRepository.findAll(pageable));
     }
 
     public BoardDetailDTO findBoardDetailById(Long id){

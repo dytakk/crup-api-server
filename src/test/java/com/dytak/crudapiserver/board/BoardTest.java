@@ -1,5 +1,6 @@
 package com.dytak.crudapiserver.board;
 
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +29,13 @@ public class BoardTest {
 
     @Test
     @DisplayName("Board 게시글 리스트 페이징을 통한 조회 테스트")
+    @Transactional
     public void boardList(){
 
         //Given (Pageable의 사이즈는 임의값 5로 지정);
         //When
         Pageable pageable = PageRequest.of(0,5);
-        Page<Board> board = boardRepository.findAll(pageable);
+        Page<BoardListDTO> board = BoardListDTO.of(boardRepository.findAll(pageable));
 
         //Then
         assertThat(board.getTotalPages()).isGreaterThan(0);
@@ -52,6 +54,7 @@ public class BoardTest {
 
         //When
         Optional<Board> board = boardRepository.findById(boardId);
+        boardService.findBoardDetailById(1L);
 
         //Then
         if(board.isPresent()){

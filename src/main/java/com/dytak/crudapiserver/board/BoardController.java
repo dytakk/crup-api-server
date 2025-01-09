@@ -17,13 +17,13 @@ public class BoardController {
     }
 
     @PostMapping("/board")
-    public ResponseEntity<?> saveBoard(@RequestBody BoardSaveDTO boardSaveDTO){
-        return ResponseEntity.ok().body(boardService.saveBoard(boardSaveDTO));
+    public ResponseEntity<?> saveBoard(@RequestBody BoardSaveDTO dto){
+        return ResponseEntity.ok().body(boardService.saveBoard(dto));
     }
 
     @PutMapping("/board")
-    public ResponseEntity<?> modifyBoard(@RequestBody BoardSaveDTO boardSaveDTO){
-        return ResponseEntity.ok().body(boardService.modifyBoard(boardSaveDTO));
+    public ResponseEntity<?> modifyBoard(@RequestBody BoardSaveDTO dto){
+        return ResponseEntity.ok().body(boardService.modifyBoard(dto));
     }
 
     @DeleteMapping("/board/{id}")
@@ -32,8 +32,8 @@ public class BoardController {
     }
 
     @RequestMapping("/board")
-    public ResponseEntity<?> findBoard(Pageable pageable){
-        return ResponseEntity.ok().body(boardService.findBoardList(pageable));
+    public ResponseEntity<?> getBoard(Pageable pageable){
+        return ResponseEntity.ok().body(boardService.getBoardList(pageable));
     }
     @RequestMapping("/board/{id}")
     public ResponseEntity<?> getBoardById(@PathVariable Long id){
