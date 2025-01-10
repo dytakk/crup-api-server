@@ -1,13 +1,10 @@
 package com.dytak.crudapiserver.board;
 
-import com.dytak.crudapiserver.comment.Comment;
-import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 
 
-import java.util.*;
-import java.util.stream.Collectors;
 
 @org.springframework.stereotype.Service
 public class BoardService {
@@ -28,13 +25,11 @@ public class BoardService {
         return BoardDetailDTO.of(board);
     }
     public Long saveBoard(BoardSaveDTO dto){
-        boardRepository.save(dto.toEntity());
-        return dto.getId();
+        return boardRepository.save(dto.toEntity()).getId();
     }
 
     public Long modifyBoard(BoardSaveDTO dto){
-        boardRepository.save(dto.toEntity());
-        return dto.getId();
+        return boardRepository.save(dto.toEntity()).getId();
     }
 
     public Long deleteBoard(Long id){

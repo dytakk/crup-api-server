@@ -13,12 +13,16 @@ import lombok.Getter;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class BoardSaveDTO {
 
-    public Long id;
-    public String title;
-    public String content;
-    public Long writerId;
+    private Long id;
+    private String title;
+    private String content;
+    private Long writerId;
     public Board toEntity(){
-        return Board.builder().id(id).content(content).title(title).writerId(writerId).build();
+        return Board.builder()
+                        .id(id)
+                        .content(content)
+                        .title(title)
+                        .writerId(writerId).build();
     }
 
 }
