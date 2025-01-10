@@ -10,6 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BoardRepository extends CrudRepository<Board,Long> {
     public Page<Board> findAll(Pageable pageable);
-
-
+    public Board findBoardByWriterId(Long id);
 }
