@@ -19,13 +19,11 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    // 실제 DB에 FK로 잡혀 있는 boardId(board_id)를 Entity를 없앴다.
-    // private Long boardId;
     private Long writerId;
     private String content;
     private Date crtDate;
     private Date modDate;
-    @ManyToOne
-    //@JoinColumn(name="board_id",insertable = false,nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="board_id")
     private Board board;
 }
