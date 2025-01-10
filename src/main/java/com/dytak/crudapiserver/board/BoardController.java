@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/board")
 public class BoardController {
 
     private final BoardService boardService;
@@ -16,26 +17,26 @@ public class BoardController {
         this.boardService=boardService;
     }
 
-    @PostMapping("/board")
+    @PostMapping
     public ResponseEntity<?> saveBoard(@RequestBody BoardSaveDTO dto){
         return ResponseEntity.ok().body(boardService.saveBoard(dto));
     }
 
-    @PutMapping("/board")
+    @PutMapping
     public ResponseEntity<?> modifyBoard(@RequestBody BoardSaveDTO dto){
         return ResponseEntity.ok().body(boardService.modifyBoard(dto));
     }
 
-    @DeleteMapping("/board/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteBoard(@PathVariable Long id){
         return ResponseEntity.ok().body(boardService.deleteBoard(id));
     }
 
-    @RequestMapping("/board")
+    @GetMapping
     public ResponseEntity<?> getBoard(Pageable pageable){
         return ResponseEntity.ok().body(boardService.getBoardList(pageable));
     }
-    @RequestMapping("/board/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getBoardById(@PathVariable Long id){
         return ResponseEntity.ok().body(boardService.findBoardDetailById(id));
     }
