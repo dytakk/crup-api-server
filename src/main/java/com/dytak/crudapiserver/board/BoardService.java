@@ -1,39 +1,20 @@
 package com.dytak.crudapiserver.board;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.*;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 
-@org.springframework.stereotype.Service
-public class BoardService {
+public interface BoardService {
 
-    private final BoardRepository boardRepository;
+    Page<BoardListDTO> getBoardList(Pageable pageable);
 
-    @Autowired
-    BoardService(BoardRepository boardRepository){
-        this.boardRepository=boardRepository;
-    }
 
-    public Page<BoardListDTO> getBoardList(Pageable pageable){
-        return BoardListDTO.of(boardRepository.findAll(pageable));
-    }
 
-    public BoardDetailDTO findBoardDetailById(Long id){
-        Board board = boardRepository.findById(id).get();
-        return BoardDetailDTO.of(board);
-    }
-    public Long saveBoard(BoardSaveDTO dto){
-        return boardRepository.save(dto.toEntity()).getId();
-    }
+    BoardDetailDTO findBoardDetailById(Long id);
 
-    public Long modifyBoard(BoardSaveDTO dto){
-        return boardRepository.save(dto.toEntity()).getId();
-    }
+    Long saveBoard(BoardSaveDTO dto);
 
-    public Long deleteBoard(Long id){
-        boardRepository.deleteById(id);
-        return id;
-    }
+    Long modifyBoard(BoardSaveDTO dto);
+
+    Long deleteBoard(Long id);
 }
