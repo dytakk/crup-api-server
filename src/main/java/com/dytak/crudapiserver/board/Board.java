@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,6 +26,7 @@ public class Board {
     private Long writerId;
     private Date crtDate;
     private Date modDate;
-    @OneToMany(mappedBy = "board")
+    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
+    @BatchSize(size=50)
     List<Comment> comment = new ArrayList<>();
 }
