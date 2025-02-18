@@ -2,7 +2,7 @@ package com.dytak.crudapiserver.comment;
 
 
 import com.dytak.crudapiserver.common.ResCodeMsg;
-import com.dytak.crudapiserver.common.ResponseDTO;
+import com.dytak.crudapiserver.common.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -28,28 +28,28 @@ public class CommentController {
   @PostMapping
   public ResponseEntity<?> saveComment(@RequestBody CommentSaveDTO dto) {
     return ResponseEntity.ok().body(
-        ResponseDTO.builder().code(ResCodeMsg.OK.getCode()).msg(ResCodeMsg.OK)
+        ResponseVO.builder().code(ResCodeMsg.OK.getCode()).msg(ResCodeMsg.OK)
             .data(commentService.saveComment(dto)).build());
   }
 
   @PutMapping
   public ResponseEntity<?> modifyComment(@RequestBody CommentSaveDTO dto) {
     return ResponseEntity.ok().body(
-        ResponseDTO.builder().code(ResCodeMsg.OK.getCode()).msg(ResCodeMsg.OK)
+        ResponseVO.builder().code(ResCodeMsg.OK.getCode()).msg(ResCodeMsg.OK)
             .data(commentService.modifyComment(dto)).build());
   }
 
   @DeleteMapping("/{id}")
   public ResponseEntity<?> deleteComment(@PathVariable Long id) {
     return ResponseEntity.ok().body(
-        ResponseDTO.builder().code(ResCodeMsg.OK.getCode()).msg(ResCodeMsg.OK)
+        ResponseVO.builder().code(ResCodeMsg.OK.getCode()).msg(ResCodeMsg.OK)
             .data(commentService.deleteComment(id)).build());
   }
 
   @GetMapping("/{id}")
   public ResponseEntity<?> getCommentById(@PathVariable Long id) {
     return ResponseEntity.ok().body(
-        ResponseDTO.builder().code(ResCodeMsg.OK.getCode()).msg(ResCodeMsg.OK)
+        ResponseVO.builder().code(ResCodeMsg.OK.getCode()).msg(ResCodeMsg.OK)
             .data(commentService.findCommentDetailById(id)).build());
   }
 
