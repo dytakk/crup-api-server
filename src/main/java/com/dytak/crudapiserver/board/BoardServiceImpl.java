@@ -1,42 +1,47 @@
 package com.dytak.crudapiserver.board;
 
 
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.*;
-
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @org.springframework.stereotype.Service
 public class BoardServiceImpl implements BoardService {
 
-    private final BoardRepository boardRepository;
+  private final BoardRepository boardRepository;
 
-    @Autowired
-    BoardServiceImpl(BoardRepository boardRepository){
-        this.boardRepository=boardRepository;
+  @Autowired
+  BoardServiceImpl(BoardRepository boardRepository) {
+    this.boardRepository = boardRepository;
+  }
+
+  public Page<BoardListDTO> getBoardList(Pageable pageable) {
+    return BoardListDTO.of(boardRepository.findAll(pageable));
+  }
+
+  public BoardDetailVO findBoardDetailById(Long id) {
+    //TODO:Null체크 어떻게할까?
+    //Board board = boardRepository.findBoardById(id);
+    //Optional<Board> board = Optional.ofNullable(boardRepository.findBoardById(id));
+    if (Optional.ofNullable(boardRepository.findBoardById(id)).isPresent()) {
+      Board board = boardRepository.findBoardById(id);
+      return BoardDetailVO.of(board);
+    } else {
+      return BoardDetailVO.builder().build();
     }
+  }
 
-    public Page<BoardListDTO> getBoardList(Pageable pageable) {
-        return BoardListDTO.of(boardRepository.findAll(pageable));
-    }
+  public Long saveBoard(BoardSaveDTO dto) {
+    return boardRepository.save(dto.toEntity()).getId();
+  }
 
+  public Long modifyBoard(BoardSaveDTO dto) {
+    return boardRepository.save(dto.toEntity()).getId();
+  }
 
-
-    public BoardDetailDTO findBoardDetailById(Long id){
-        Board board = boardRepository.findById(id).get();
-        return BoardDetailDTO.of(board);
-    }
-    public Long saveBoard(BoardSaveDTO dto){
-        return boardRepository.save(dto.toEntity()).getId();
-    }
-
-    public Long modifyBoard(BoardSaveDTO dto){
-        return boardRepository.save(dto.toEntity()).getId();
-    }
-
-    public Long deleteBoard(Long id){
-        boardRepository.deleteById(id);
-        return id;
-    }
+  public Long deleteBoard(Long id) {
+    boardRepository.deleteById(id);
+    return id;
+  }
 }

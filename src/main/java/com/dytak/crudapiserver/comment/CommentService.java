@@ -2,7 +2,7 @@ package com.dytak.crudapiserver.comment;
 
 public interface CommentService {
 
-  public CommentDetailDTO findCommentDetailById(Long id);
+  public CommentDetailVO findCommentDetailById(Long id);
 
   public Long saveComment(CommentSaveDTO dto);
 
