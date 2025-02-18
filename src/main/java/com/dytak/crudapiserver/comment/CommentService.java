@@ -1,34 +1,13 @@
 package com.dytak.crudapiserver.comment;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import java.util.Optional;
+public interface CommentService {
 
-@org.springframework.stereotype.Service
-public class CommentService {
+  public CommentDetailDTO findCommentDetailById(Long id);
 
-    private final CommentRepository commentRepository;
+  public Long saveComment(CommentSaveDTO dto);
 
-    @Autowired
-    CommentService(CommentRepository commentRepository){
-        this.commentRepository=commentRepository;
-    }
+  public Long modifyComment(CommentSaveDTO dto);
 
+  public Long deleteComment(Long id);
 
-    public CommentDetailDTO findCommentDetailById(Long id){
-        Comment comment = commentRepository.findById(id).get();
-        return CommentDetailDTO.of(comment);
-
-    }
-    public Long saveComment(CommentSaveDTO dto){
-        return  commentRepository.save(dto.toEntity()).getId();
-    }
-
-    public Long modifyComment(CommentSaveDTO dto){
-        return  commentRepository.save(dto.toEntity()).getId();
-    }
-
-    public Long deleteComment(Long id){
-        commentRepository.deleteById(id);
-        return id;
-    }
 }
