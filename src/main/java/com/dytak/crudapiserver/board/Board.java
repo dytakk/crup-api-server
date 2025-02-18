@@ -2,15 +2,20 @@ package com.dytak.crudapiserver.board;
 
 
 import com.dytak.crudapiserver.comment.Comment;
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import jakarta.persistence.*;
-import lombok.*;
-import org.hibernate.annotations.BatchSize;
-
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.BatchSize;
 
 @Entity
 @Getter
@@ -18,15 +23,17 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Board {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String title;
-    private String content;
-    private Long writerId;
-    private Date crtDate;
-    private Date modDate;
-    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
-    @BatchSize(size=50)
-    List<Comment> comment = new ArrayList<>();
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  private String title;
+  private String content;
+  private Long writerId;
+  private Date crtDate;
+  private Date modDate;
+
+  @OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
+  @BatchSize(size = 10)
+  List<Comment> comment = new ArrayList<>();
 }
