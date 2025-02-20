@@ -6,9 +6,8 @@ import org.springframework.data.domain.Pageable;
 
 public interface BoardService {
 
-  Page<BoardListDTO> getBoardList(Pageable pageable);
-
-
+  Page<BoardListVO> getBoardList(Pageable pageable);
+  
   BoardDetailVO findBoardDetailById(Long id);
 
   Long saveBoard(BoardSaveDTO dto);

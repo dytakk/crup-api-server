@@ -16,8 +16,8 @@ public class BoardServiceImpl implements BoardService {
     this.boardRepository = boardRepository;
   }
 
-  public Page<BoardListDTO> getBoardList(Pageable pageable) {
-    return BoardListDTO.of(boardRepository.findAll(pageable));
+  public Page<BoardListVO> getBoardList(Pageable pageable) {
+    return BoardListVO.of(boardRepository.findAll(pageable));
   }
 
   public BoardDetailVO findBoardDetailById(Long id) {
