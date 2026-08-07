@@ -1,7 +1,6 @@
 package com.dytak.crudapiserver.board;
 
 
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,20 +15,12 @@ public class BoardServiceImpl implements BoardService {
     this.boardRepository = boardRepository;
   }
 
-  public Page<BoardListVO> getBoardList(Pageable pageable) {
-    return BoardListVO.of(boardRepository.findAll(pageable));
+  public Page<BoardListDTO> getBoardList(Pageable pageable) {
+    return BoardListDTO.of(boardRepository.findAll(pageable));
   }
 
   public BoardDetailVO findBoardDetailById(Long id) {
-    //TODO:Null체크 어떻게할까?
-    //Board board = boardRepository.findBoardById(id);
-    //Optional<Board> board = Optional.ofNullable(boardRepository.findBoardById(id));
-    if (Optional.ofNullable(boardRepository.findBoardById(id)).isPresent()) {
-      Board board = boardRepository.findBoardById(id);
-      return BoardDetailVO.of(board);
-    } else {
-      return BoardDetailVO.builder().build();
-    }
+    return BoardDetailVO.of(boardRepository.findBoardById(id));
   }
 
   public Long saveBoard(BoardSaveDTO dto) {

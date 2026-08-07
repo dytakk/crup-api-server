@@ -13,7 +13,7 @@ import org.springframework.data.domain.Page;
 @Builder
 @AllArgsConstructor
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class BoardListVO {
+public class BoardListDTO {
 
   private Long id;
   private String title;
@@ -22,8 +22,8 @@ public class BoardListVO {
   private Date modDate;
   private Long commentCount;
 
-  public static Page<BoardListVO> of(Page<Board> board) {
-    return board.map(v -> BoardListVO.builder()
+  public static Page<BoardListDTO> of(Page<Board> board) {
+    return board.map(v -> BoardListDTO.builder()
         .id(v.getId())
         .title(v.getTitle())
         .writerId(v.getWriterId())

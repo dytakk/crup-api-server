@@ -21,13 +21,12 @@ public class BoardDetailVO {
   private Long writerId;
   private Date crtDate;
   private Date modDate;
-  //기존 private List<Comment> comment
-  private List<CommentDTO> comment;
+  private List<CommentVO> comment;
 
   @Builder
   @AllArgsConstructor
   @Getter
-  public static class CommentDTO {
+  public static class CommentVO {
 
     private Long id;
     private Long writerId;
@@ -37,7 +36,7 @@ public class BoardDetailVO {
   }
 
   public static BoardDetailVO of(Board board) {
-    List<CommentDTO> commentList = board.getComment().stream().map(v -> CommentDTO.builder()
+    List<CommentVO> commentList = board.getComment().stream().map(v -> CommentVO.builder()
         .id(v.getId())
         .writerId(v.getWriterId())
         .content(v.getContent())
