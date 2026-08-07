@@ -12,11 +12,8 @@ public class CommentServiceImpl implements CommentService {
     this.commentRepository = commentRepository;
   }
 
-
   public CommentDetailVO findCommentDetailById(Long id) {
-    Comment comment = commentRepository.findById(id).get();
-    return CommentDetailVO.of(comment);
-
+    return CommentDetailVO.of(commentRepository.findCommentById(id));
   }
 
   public Long saveComment(CommentSaveDTO dto) {
