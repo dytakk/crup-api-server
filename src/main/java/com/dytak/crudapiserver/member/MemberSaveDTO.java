@@ -1,14 +1,12 @@
 package com.dytak.crudapiserver.member;
 
 
-import com.dytak.crudapiserver.util.PasswordEncrypt;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import java.security.NoSuchAlgorithmException;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-
-import java.security.NoSuchAlgorithmException;
 
 @Getter
 @Builder
@@ -17,14 +15,22 @@ import java.security.NoSuchAlgorithmException;
 public class MemberSaveDTO {
 
 
-    private String username;
-    private String password;
-    private String name;
-    private String grade;
-    private String mailAddress;
+  private String username;
+  private String password;
+  private String name;
+  private String grade;
+  private String mailAddress;
+  private String accessToken;
 
-    public Member toEntity() throws NoSuchAlgorithmException {
-        return Member.builder().username(username).password(PasswordEncrypt.sha256(password)).name(name).grade(grade).mailAddress(mailAddress).build();
-    }
+  public Member toEntity(String password) throws NoSuchAlgorithmException {
+    return Member
+        .builder()
+        .username(username)
+        .password(password)
+        .name(name)
+        .grade(grade)
+        .mailAddress(mailAddress)
+        .build();
+  }
 
 }
