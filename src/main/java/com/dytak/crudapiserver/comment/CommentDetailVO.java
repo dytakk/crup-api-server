@@ -3,6 +3,7 @@ package com.dytak.crudapiserver.comment;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import java.util.Date;
+import java.util.Optional;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,13 +22,13 @@ public class CommentDetailVO {
   private Date modDate;
 
 
-  public static CommentDetailVO of(Comment comment) {
+  public static CommentDetailVO of(Optional<Comment> comment) {
     return CommentDetailVO.builder()
-        .boardId(comment.getBoard().getId())
-        .id(comment.getId())
-        .content(comment.getContent())
-        .writerId(comment.getWriterId())
-        .crtDate(comment.getCrtDate())
-        .modDate(comment.getModDate()).build();
+        .boardId(comment.get().getBoard().getId())
+        .id(comment.get().getId())
+        .content(comment.get().getContent())
+        .writerId(comment.get().getWriterId())
+        .crtDate(comment.get().getCrtDate())
+        .modDate(comment.get().getModDate()).build();
   }
 }
