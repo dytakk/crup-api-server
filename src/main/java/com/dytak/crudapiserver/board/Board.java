@@ -2,6 +2,8 @@ package com.dytak.crudapiserver.board;
 
 
 import com.dytak.crudapiserver.comment.Comment;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -22,7 +24,14 @@ import org.hibernate.annotations.BatchSize;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class Board {
+
+  public Long modifyBoard(String title, String content) {
+    this.title = title;
+    this.content = content;
+    return this.id;
+  }
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

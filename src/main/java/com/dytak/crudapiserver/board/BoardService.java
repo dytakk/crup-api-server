@@ -12,7 +12,7 @@ public interface BoardService {
 
   Long saveBoard(BoardSaveDTO dto);
 
-  Long modifyBoard(BoardSaveDTO dto);
+  Object modifyBoard(BoardSaveDTO dto);
 
   Long deleteBoard(Long id);
 }
