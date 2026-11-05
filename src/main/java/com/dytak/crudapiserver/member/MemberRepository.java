@@ -1,11 +1,16 @@
 package com.dytak.crudapiserver.member;
 
+import io.micrometer.common.lang.NonNullApi;
+import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface MemberRepository extends CrudRepository<Member,Long> {
+@NonNullApi
+public interface MemberRepository extends CrudRepository<Member, Long> {
 
-    Member findByUsername(String username);
+  Optional<Member> findByUsername(String username);
+
+  Iterable<Member> findAll();
 }

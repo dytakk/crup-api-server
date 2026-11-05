@@ -3,7 +3,6 @@ package com.dytak.crudapiserver.member;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import java.security.NoSuchAlgorithmException;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,7 +21,7 @@ public class MemberSaveDTO {
   private String mailAddress;
   private String accessToken;
 
-  public Member toEntity(String password) throws NoSuchAlgorithmException {
+  public Member toEntity(String password) {
     return Member
         .builder()
         .username(username)
